@@ -15,7 +15,7 @@ AI-powered consulting bot for **Prokar Expert Audit** — an auditing and accoun
 - `/start` and `/help` commands
 
 ### For the admin
-All admin commands are only visible and accessible to the user whose Telegram ID is set as `ADMIN_CHAT_ID`. Regular users cannot see or trigger them.
+All admin commands are only visible and accessible to the user whose Telegram ID is set as `ADMIN_CHAT_IDS`. Regular users cannot see or trigger them.
 
 | Command | Description |
 |---|---|
@@ -91,7 +91,7 @@ pip install -r requirements.txt
 
 ```env
 TOKEN=<your Telegram bot token>
-ADMIN_CHAT_ID=<your Telegram user ID>
+ADMIN_CHAT_IDS=<your Telegram user ID>
 OPENAI_API_KEY=<your OpenAI API key>
 
 DB_NAME=prokar_bot
@@ -101,7 +101,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
-> **ADMIN_CHAT_ID** — the Telegram numeric ID of the manager. Get it from [@userinfobot](https://t.me/userinfobot). This user will see admin commands in the "/" menu and can use all `/admin`, `/users`, `/user`, `/stats`, `/topics` commands.
+> **ADMIN_CHAT_IDS** — the Telegram numeric ID of the manager. Get it from [@userinfobot](https://t.me/userinfobot). This user will see admin commands in the "/" menu and can use all `/admin`, `/users`, `/user`, `/stats`, `/topics` commands.
 
 ### 3. Create MySQL database
 
@@ -241,7 +241,7 @@ callback: contact_consultant
     → waiting_for_email     (text, optional)
     → waiting_for_company   (text, optional)
     → waiting_for_question  (text)
-        → saves to DB, sends notification to ADMIN_CHAT_ID
+        → saves to DB, sends notification to ADMIN_CHAT_IDS
 ```
 
 At the phone step, a `ReplyKeyboardMarkup` is shown with a native "Share phone number" button. On success the reply keyboard is removed and inline keyboards resume.
@@ -268,7 +268,7 @@ The HTML file mimics Telegram's visual design:
 | Variable | Required | Description |
 |---|---|---|
 | `TOKEN` | ✅ | Telegram bot token from @BotFather |
-| `ADMIN_CHAT_ID` | ✅ | Telegram ID of the admin user |
+| `ADMIN_CHAT_IDS` | ✅ | Telegram ID of the admin user |
 | `OPENAI_API_KEY` | ✅ | OpenAI API key |
 | `DB_NAME` | ✅ | MySQL database name |
 | `DB_USER` | ✅ | MySQL user |
@@ -297,9 +297,9 @@ A detailed HTML guide for both clients and the admin manager is available at [`g
 
 ## Company
 
-**Прокар Эксперт Аудит**  
-г. Ташкент, Яккасарайский р-н, ул. Кичик Бешегов 70, 2  
-📞 +998 90 919 20 35 / +998 90 188 69 12  
+**Прокар Эксперт Аудит**
+г. Ташкент, Яккасарайский р-н, ул. Кичик Бешегов 70, 2
+📞 +998 90 919 20 35 / +998 90 188 69 12
 🌐 [prokar.uz](https://www.prokar.uz) · ISO 9001
 
 **Developer:** Улугбек Умаралиев · [@thedevu101](https://t.me/thedevu101) · +998 99 693 73 08

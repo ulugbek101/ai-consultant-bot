@@ -5,7 +5,7 @@ env.read_env()
 
 TOKEN = env.str("TOKEN")
 OPENAI_API_KEY = env.str("OPENAI_API_KEY")
-ADMIN_IDS: list[int] = [int(x) for x in env.list("ADMIN_CHAT_IDS")]
+ADMIN_CHAT_IDS = env.int("ADMIN_CHAT_IDS")
 
 DB_NAME = env.str("DB_NAME")
 DB_USER = env.str("DB_USER")

@@ -6,7 +6,7 @@ import handlers.ai_chat   # noqa: F401
 import handlers.contact   # noqa: F401
 import handlers.start     # noqa: F401
 from aiogram.types import BotCommand, BotCommandScopeChat, BotCommandScopeDefault
-from config import ADMIN_IDS
+from config import ADMIN_CHAT_IDS as ADMIN_IDS
 from loader import bot, db, dp
 from router import router
 
