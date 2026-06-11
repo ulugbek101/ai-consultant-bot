@@ -97,7 +97,7 @@ async def _send_users_page(message: types.Message, page: int) -> None:
     if nav:
         lines.append("\n" + "     ".join(nav))
 
-    await message.answer("\n".join(lines))
+    await message.answer("\n\n".join(lines))
 
 
 _HTML_CSS = """
