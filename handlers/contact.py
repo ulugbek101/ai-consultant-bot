@@ -1,3 +1,4 @@
+import html as html_lib
 import re
 
 from aiogram import F, types
@@ -141,16 +142,20 @@ async def fsm_question(message: types.Message, state: FSMContext) -> None:
     tg_link = f'<a href="tg://user?id={user.id}">{user.id}</a>'
     username_str = f"@{user.username}" if user.username else "—"
 
+    def _e(v): return html_lib.escape(str(v)) if v else "—"
+
     admin_text = (
         "🔔 <b>Новый запрос на консультацию!</b>\n\n"
-        f"👤 Имя:        {data.get('name')}\n"
-        f"📱 Телефон:    {data.get('phone')}\n"
-        f"📧 Email:      {data.get('email') or '—'}\n"
-        f"🏢 Компания:   {data.get('company') or '—'}\n"
-        f"💬 Вопрос:     {question}\n\n"
-        f"🆔 Telegram:   {username_str}\n"
-        f"🔗 ID:         {tg_link}\n"
-        f"🌐 Язык:       {user.language_code or '—'}"
+        "<pre>"
+        f"👤 {'Имя:':<10} {_e(data.get('name'))}\n"
+        f"📱 {'Телефон:':<10} {data.get('phone') or '—'}\n"
+        f"📧 {'Email:':<10} {_e(data.get('email'))}\n"
+        f"🏢 {'Компания:':<10} {_e(data.get('company'))}\n"
+        f"💬 {'Вопрос:':<10} {_e(question)}\n\n"
+        f"🆔 {'Telegram:':<10} {username_str}\n"
+        f"🌐 {'Язык:':<10} {_e(user.language_code)}"
+        "</pre>\n"
+        f"🔗 ID: {tg_link}"
     )
     for _admin_id in ADMIN_CHAT_IDS:
         await bot.send_message(_admin_id, admin_text)
