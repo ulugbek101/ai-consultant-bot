@@ -145,7 +145,7 @@ async def fsm_question(message: types.Message, state: FSMContext) -> None:
         "🔔 <b>Новый запрос на консультацию!</b>\n\n"
         f"👤 Имя:             {data.get('name')}\n"
         f"📱 Телефон:     {data.get('phone')}\n"
-        f"📧 Email:           {data.get('email') or '—'}\n"
+        f"📧 Email:            {data.get('email') or '—'}\n"
         f"🏢 Компания:    {data.get('company') or '—'}\n"
         f"💬 Вопрос:        {question}\n\n"
         f"🆔 Telegram:    {username_str}\n"
