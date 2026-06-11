@@ -27,6 +27,7 @@ _ADMIN_COMMANDS = _USER_COMMANDS + [
 async def on_startup() -> None:
     db.create_tables()
     db.seed_subcategories()
+    db.update_subcategory_labels()
     await bot.set_my_commands(_USER_COMMANDS, scope=BotCommandScopeDefault())
     await bot.set_my_commands(_ADMIN_COMMANDS, scope=BotCommandScopeChat(chat_id=ADMIN_CHAT_ID))
     logging.info("DB tables ready, commands set")

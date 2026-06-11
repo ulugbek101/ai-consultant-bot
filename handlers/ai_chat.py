@@ -87,21 +87,6 @@ async def cb_subcategory(callback: types.CallbackQuery, state: FSMContext) -> No
     await callback.answer()
 
 
-# ── Back to subcategory list ───────────────────────────────────────────────────
-
-@router.callback_query(F.data.startswith("back_to_cat_"))
-async def cb_back_to_category(callback: types.CallbackQuery, state: FSMContext) -> None:
-    category_key = callback.data[len("back_to_cat_"):]
-    subcategories = await db.get_subcategories(category_key)
-    label = _CATEGORY_LABELS.get(category_key, "")
-    await state.clear()
-    await callback.message.edit_text(
-        f"📂 <b>{label}</b>\n\nВыберите подкатегорию:",
-        reply_markup=subcategory_keyboard(subcategories, category_key),
-    )
-    await callback.answer()
-
-
 # ── Back to main services ──────────────────────────────────────────────────────
 
 @router.callback_query(F.data == "back_to_services")

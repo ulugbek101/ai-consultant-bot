@@ -41,6 +41,6 @@ def subcategory_keyboard(subcategories: list[dict], category_key: str) -> Inline
     builder = InlineKeyboardBuilder()
     for sub in subcategories:
         builder.button(text=sub["label"], callback_data=f"sub_{sub['id']}")
-    builder.button(text="⬅️ Назад", callback_data=f"back_to_cat_{category_key}")
+    builder.button(text="⬅️ Назад", callback_data="back_to_services")
     builder.adjust(1)
     return builder.as_markup()
