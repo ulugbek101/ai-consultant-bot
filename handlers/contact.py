@@ -4,7 +4,7 @@ from aiogram import F, types
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 
-from config import ADMIN_IDS
+from config import ADMIN_CHAT_IDS as ADMIN_IDS
 from keyboards.inline import after_contact_keyboard, cancel_keyboard, services_keyboard
 from keyboards.reply import phone_keyboard
 from loader import bot, db
