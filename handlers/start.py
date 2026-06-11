@@ -44,8 +44,9 @@ async def cmd_help(message: types.Message) -> None:
         "• Экологическая документация\n"
         "• Общие бизнес-вопросы\n\n"
         "Хотите поговорить с живым специалистом? Нажмите «Связаться с консультантом».\n\n"
-        "📞 +998 90 919 20 35 / +998 90 188 69 12\n"
-        "🌐 www.prokar.uz",
+        "📞 <a href=\"tel:+998909192035\">+998 90 919 20 35</a> \n"
+        "📞 <a href=\"tel:+998901886912\">+998 90 188 69 12</a> \n"
+        "🌐 <a href=\"https://www.prokar.uz\">www.prokar.uz</a>",
         reply_markup=services_keyboard(),
     )
 
