@@ -4,7 +4,7 @@ from aiogram import F, types
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 
-from config import ADMIN_CHAT_ID
+from config import ADMIN_IDS
 from keyboards.inline import after_contact_keyboard, cancel_keyboard, services_keyboard
 from keyboards.reply import phone_keyboard
 from loader import bot, db
@@ -152,7 +152,8 @@ async def fsm_question(message: types.Message, state: FSMContext) -> None:
         f"🔗 ID:         {tg_link}\n"
         f"🌐 Язык:       {user.language_code or '—'}"
     )
-    await bot.send_message(ADMIN_CHAT_ID, admin_text)
+    for _admin_id in ADMIN_IDS:
+        await bot.send_message(_admin_id, admin_text)
 
     await state.clear()
     await message.answer(

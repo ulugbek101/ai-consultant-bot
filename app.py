@@ -6,7 +6,7 @@ import handlers.ai_chat   # noqa: F401
 import handlers.contact   # noqa: F401
 import handlers.start     # noqa: F401
 from aiogram.types import BotCommand, BotCommandScopeChat, BotCommandScopeDefault
-from config import ADMIN_CHAT_ID
+from config import ADMIN_IDS
 from loader import bot, db, dp
 from router import router
 
@@ -25,12 +25,25 @@ _ADMIN_COMMANDS = _USER_COMMANDS + [
 
 
 async def on_startup() -> None:
-    db.create_tables()
-    db.seed_subcategories()
-    db.update_subcategory_labels()
+    try:
+        db.create_tables()
+        db.seed_subcategories()
+        db.update_subcategory_labels()
+    except Exception as exc:
+        logging.error("DB startup error: %s", exc)
+
     await bot.set_my_commands(_USER_COMMANDS, scope=BotCommandScopeDefault())
-    await bot.set_my_commands(_ADMIN_COMMANDS, scope=BotCommandScopeChat(chat_id=ADMIN_CHAT_ID))
-    logging.info("DB tables ready, commands set")
+    for admin_id in ADMIN_IDS:
+        try:
+            await bot.set_my_commands(_ADMIN_COMMANDS, scope=BotCommandScopeChat(chat_id=admin_id))
+            await bot.send_message(
+                admin_id,
+                "🤖 Бот запущен. Вы получаете это сообщение, потому что являетесь администратором.",
+            )
+        except Exception as exc:
+            logging.warning("Could not reach admin %s: %s", admin_id, exc)
+
+    logging.info("DB ready, commands set, admins notified")
 
 
 async def main() -> None:
