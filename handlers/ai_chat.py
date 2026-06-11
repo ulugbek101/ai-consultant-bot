@@ -14,6 +14,15 @@ from utils.md_to_html import md_to_html
 
 logger = logging.getLogger(__name__)
 
+_FOOTER = (
+    "\n\n<b>─────────────────────</b>\n"
+    "⚠️ <i>Представленная консультация носит общий характер и может быть неточной, "
+    "так как каждый случай индивидуален. Для получения точной информации, пожалуйста, "
+    "свяжитесь с нашим менеджером.</i>\n\n"
+    "📞 <b>+998 90 919 20 35</b> / <b>+998 90 188 69 12</b>\n"
+    "🌐 <b>www.prokar.uz</b>"
+)
+
 # Human-readable labels used in the AI context string
 _CATEGORY_LABELS: dict[str, str] = {
     "svc_accounting": "Помощь с бухгалтерией",
@@ -148,4 +157,4 @@ async def _process(message: types.Message, user_id: int, text: str, edit: bool =
         )
 
     await thinking.delete()
-    await message.answer(md_to_html(reply), reply_markup=services_keyboard())
+    await message.answer(md_to_html(reply) + _FOOTER, reply_markup=services_keyboard())
