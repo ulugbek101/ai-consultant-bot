@@ -6,7 +6,7 @@ from aiogram import types
 from aiogram.filters import Command
 from aiogram.types import BufferedInputFile
 
-from config import ADMIN_CHAT_IDS as ADMIN_IDS
+from config import ADMIN_CHAT_IDS
 from loader import db
 from router import router
 from utils.md_to_html import md_to_html
@@ -25,7 +25,7 @@ _TOPIC_LABELS = {
 
 
 def _is_admin(message: types.Message) -> bool:
-    return message.from_user.id in ADMIN_IDS
+    return message.from_user.id in ADMIN_CHAT_IDS
 
 
 def _ago(dt: datetime | None) -> str:

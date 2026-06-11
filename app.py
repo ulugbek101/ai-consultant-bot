@@ -6,7 +6,7 @@ import handlers.ai_chat   # noqa: F401
 import handlers.contact   # noqa: F401
 import handlers.start     # noqa: F401
 from aiogram.types import BotCommand, BotCommandScopeChat, BotCommandScopeDefault
-from config import ADMIN_CHAT_IDS as ADMIN_IDS
+from config import ADMIN_CHAT_IDS
 from loader import bot, db, dp
 from router import router
 
@@ -33,7 +33,7 @@ async def on_startup() -> None:
         logging.error("DB startup error: %s", exc)
 
     await bot.set_my_commands(_USER_COMMANDS, scope=BotCommandScopeDefault())
-    for admin_id in ADMIN_IDS:
+    for admin_id in ADMIN_CHAT_IDS:
         try:
             await bot.set_my_commands(_ADMIN_COMMANDS, scope=BotCommandScopeChat(chat_id=admin_id))
             await bot.send_message(
