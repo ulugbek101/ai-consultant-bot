@@ -145,12 +145,12 @@ async def fsm_question(message: types.Message, state: FSMContext) -> None:
         "🔔 <b>Новый запрос на консультацию!</b>\n\n"
         f"👤 Имя:             {data.get('name')}\n"
         f"📱 Телефон:     {data.get('phone')}\n"
-        f"📧 Email:         {data.get('email') or '—'}\n"
-        f"🏢 Компания:   {data.get('company') or '—'}\n"
-        f"💬 Вопрос:       {question}\n\n"
-        f"🆔 Telegram:   {username_str}\n"
-        f"🔗 ID:               {tg_link}\n"
-        f"🌐 Язык:           {user.language_code or '—'}"
+        f"📧 Email:           {data.get('email') or '—'}\n"
+        f"🏢 Компания:    {data.get('company') or '—'}\n"
+        f"💬 Вопрос:        {question}\n\n"
+        f"🆔 Telegram:    {username_str}\n"
+        f"🔗 ID:                {tg_link}\n"
+        f"🌐 Язык:            {user.language_code or '—'}"
     )
     for _admin_id in ADMIN_CHAT_IDS:
         await bot.send_message(_admin_id, admin_text)
